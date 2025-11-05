@@ -9,7 +9,12 @@ int main(int argc, char **argv)
 {
 
     //Part1: Reading files 
-
+    //Assuming json file is not provided, we send an error
+    if (argc != 2) {
+        cerr <<"Incorrect input. You either provided no file or more than one. Please provide one json file" <<endl;
+        return 1;
+    }
+    
     string jsonFile = argv[1]; //getting jsonFile from command line
 
     ifstream inputFile(jsonFile); // Reading jsonFile
