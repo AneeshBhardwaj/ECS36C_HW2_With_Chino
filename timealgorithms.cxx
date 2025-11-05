@@ -1,17 +1,15 @@
 #include <iostream>
 #include <fstream>
 #include "json.hpp" //For loading json file
-#include <chrono> // Used for timing
-#include <string>
 #include <vector>
 
-//Importing the three sorting files we will be running
+// Importing the three sorting files we will be running
 #include "insertionsort.h"
 #include "mergesort.h"
 #include "quicksort.h"
 
-using namespace std; //Avoids using std everytime
-using json = nlohmann::json; //allows access to nlohmann just by calling json
+using namespace std;         // Avoids using std everytime
+using json = nlohmann::json; // allows access to nlohmann just by calling json
 
 int main(int argc, char **argv)
 {
@@ -39,27 +37,26 @@ int main(int argc, char **argv)
     {
         json data;         // Declaring a json data type that will store the file data
         inputFile >> data; // Pushing or reading file inputs into data
-        json result;       // json object to store result
 
         for (auto items = data.begin(); items != data.end(); ++items)
         { // start from the beginning and don't stop until we reach the end of data
             {
-                string key = items.key(); //holds json keys like sample1, sample2,...
-                json value = items.value(); //holds json values which are values inside sample arrays
+                string key = items.key();   // holds json keys like sample1, sample2,...
+                vector<int> jsonArrays = items.value().get<vector<int>>(); // stores values as a vector
 
-                 cout<<key<<":"<<value<<endl; 
                 // skipping metadata because it is not an array
                 if (key == "metadata")
                 {
                     continue; // move to the next key value pair
                 }
+                InsertionSort(&jsonArrays); 
+
+                // 3: For each sample, run insertionSort, mergeSort, and quickSort
+
+                // 4: store all result in a variable
+
+                // 5: Print result in cvs format
             }
         }
-
-        // 3: For each sample, run insertionSort, mergeSort, and quickSort
-
-        // 4: store all result in a variable
-
-        // 5: Print result in cvs format
     }
 }
