@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
             outputs_to_json[SampName][secondFile] = secondFileArray; // Updates the new sectioction of the JSON file in the "Sample2" - adds another key under file2.json
             outputs_to_json[SampName]["Mismatches"] = mismatchList; // Collecting all of the possible mismatches between both of the samples of data from both files
         }
-    }
+    } 
     
     outputs_to_json["metadata"]["samplesWithConflictingResults"] = totalmismatches;
     cout << outputs_to_json.dump(4) << endl; // Printing the format of the new updated JSON in an easy to read format. .dump() is from the nlohmann json library
